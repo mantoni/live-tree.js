@@ -1,0 +1,31 @@
+{
+  "name"             : "live-tree",
+  "version"          : "0.1.0",
+  "description"      : "Fast tree with live iterator",
+  "keywords"         : ["tree", "iterator"],
+  "author"           : "Maximilian Antoni (http://maxantoni.de)",
+  "homepage"         : "http://maxantoni.de/projects/live-tree.js/",
+  "main"             : "./lib/tree.js",
+  "engines"          : {
+    "node"           : ">=0.6"
+  },
+  "scripts"          : {
+    "test"           : "make test"
+  },
+  "repository"       : {
+    "type"           : "git",
+    "url"            : "https://github.com/mantoni/live-tree.js.git"
+  },
+  "dependencies"     : {
+    "live-list"      : "0.1.0"
+  },
+  "devDependencies"  : {
+    "autolint"       : ">=1.1 <2",
+    "mocha"          : ">=1.14 <2",
+    "consolify"      : "~0.6.0",
+    "phantomic"      : "~0.2.1",
+    "browser-reload" : ">=1.0 <2"
+  },
+  "files"            : ["lib", "README.md", "CHANGES.md", "LICENSE"],
+  "license"          : "MIT"
+}
