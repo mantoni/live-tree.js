@@ -53,11 +53,11 @@ describe('iterator.hasNext', function () {
 });
 
 
-function toArray(node) {
-  var i = new Iterator(node);
+function toArray(n) {
+  var i = new Iterator(n);
   var a = [];
   while (i.hasNext()) {
-    a.push(i.next());
+    a.push(i.next().value);
   }
   return a;
 }
@@ -97,7 +97,7 @@ describe('iterator.next', function () {
     n.set('c', 1);
     n.set('f', 2);
 
-    assert.deepEqual(toArray(n), [n._map.c, n._map.f, n._map.c._map.d]);
+    assert.deepEqual(toArray(n), [1, 2, 3]);
   });
 
   it('does not return the previous value on second next call', function () {
@@ -110,5 +110,62 @@ describe('iterator.next', function () {
     assert.equal(i.next().value, 1);
     assert.equal(i.next().value, 2);
   });
+
+  it('invokes the filter function with each node', function () {
+    var a = [];
+    var n = new Node('a');
+    var i = new Iterator(n, function (x) {
+      a.push(x.name);
+      return true;
+    });
+    n.set('b', 1);
+    n.set('c.d', 2);
+
+    while (i.hasNext()) {
+      i.next();
+    }
+
+    assert.deepEqual(a, ['b', 'd']);
+  });
+
+  it('does not return node if filter returns false', function () {
+    var n = new Node('a');
+    var i = new Iterator(n, function () {
+      return false;
+    });
+    n.set('b', 1);
+
+    assert.strictEqual(i.hasNext(), false);
+  });
+
+  it('does not pass children to filter if it returned false', function () {
+    var a = [];
+    var n = new Node('a');
+    var i = new Iterator(n, function (x) {
+      a.push(x.name);
+      return false;
+    });
+    n.set('b', 1);
+    n.set('b.c', 2);
+
+    while (i.hasNext()) {
+      i.next();
+    }
+
+    assert.deepEqual(a, ['b']);
+  });
+
+  it('passes children to filter but not parent if it retuned null',
+    function () {
+      var n = new Node('a');
+      var i = new Iterator(n, function (x) {
+        return x.name === 'b' ? null : true;
+      });
+      n.set('b', 1);
+      n.set('b.c', 2);
+
+      assert.deepEqual(i.next().value, 2);
+      assert.strictEqual(i.hasNext(), false);
+    });
 
 });

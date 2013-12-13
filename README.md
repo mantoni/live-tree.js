@@ -49,6 +49,7 @@ while (n.hasNext()) {
 - `remove(name)`: Removes the named node. If it has children, the value is
   deleted. Parent nodes in the path with no value and no remaining children
   will be removed as well.
+- `node(name)`: Return the named node or undefined if the node does not exist
 - `_add(node)`: Called by `set` to add a node to the children. The default
   implementation does `this.children.push(node);`.
 - `_value(value)`: Called by `set` to change the value. The default
@@ -56,12 +57,15 @@ while (n.hasNext()) {
 - `toObject()`: Returns a plain object representation of the node and it's
   children
 - `iterator()`: Returns a new `Iterator`
-- `iterator(fn)`: Returns a new `Iterator` with the given filter function. The
-  filter is called with each child node. If the filter returns `true`, the
+- `iterator(filter)`: Returns a new `Iterator` with the given filter function.
+  The filter is called with each child node. If the filter returns `true`, the
   child node will be returned by `next()`.
 
 ## Iterator API
 
+- `Iterator(node)`: Returns a new Iterator using the given root node
+- `Iterator(node, filter)`: Returns a new Iterator using the given root node
+  and filter function
 - `hasNext()`: Returns `true` if there are more items in the tree to iterate
 - `next()`: Returns the next node in the tree
 

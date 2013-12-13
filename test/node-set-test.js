@@ -119,4 +119,16 @@ describe('node.set', function () {
     assert.equal(a, 42);
   });
 
+  it('uses the constructor to create new node instances', function () {
+    function Derived(name) {
+      Node.call(this, name);
+    }
+    Derived.prototype = Object.create(Node.prototype);
+    Derived.prototype.constructor = Derived;
+
+    var n = new Derived('root');
+    n.set('x');
+
+    assert(n._map.x instanceof Derived);
+  });
 });
