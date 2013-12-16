@@ -17,7 +17,7 @@
     "url"            : "https://github.com/mantoni/live-tree.js.git"
   },
   "dependencies"     : {
-    "live-list"      : "0.1.0"
+    "live-list"      : "0.2.0"
   },
   "devDependencies"  : {
     "autolint"       : ">=1.1 <2",

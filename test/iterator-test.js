@@ -14,50 +14,11 @@ var Node     = require('../lib/node').Node;
 var Iterator = require('../lib/iterator').Iterator;
 
 
-describe('iterator.hasNext', function () {
-
-  it('returns false by default', function () {
-    var n = new Node('a');
-    var i = new Iterator(n);
-
-    assert.strictEqual(i.hasNext(), false);
-  });
-
-  it('does not return false if there is a child node', function () {
-    var n = new Node('a');
-    n.set('b', 1);
-    var i = new Iterator(n);
-
-    assert.strictEqual(i.hasNext(), true);
-  });
-
-  it('returns false after calling next', function () {
-    var n = new Node('a');
-    n.set('b', 1);
-    var i = new Iterator(n);
-    i.next();
-
-    assert.strictEqual(i.hasNext(), false);
-  });
-
-  it('returns true after calling next', function () {
-    var n = new Node('a');
-    n.set('b', 1);
-    n.set('c', 2);
-    var i = new Iterator(n);
-    i.next();
-
-    assert.strictEqual(i.hasNext(), true);
-  });
-
-});
-
-
 function toArray(n) {
   var i = new Iterator(n);
   var a = [];
-  while (i.hasNext()) {
-    a.push(i.next().value);
+  while ((n = i.next()) !== undefined) {
+    a.push(n.value);
   }
   return a;
 }
@@ -65,21 +26,30 @@ function toArray(n) {
 
 describe('iterator.next', function () {
 
-  it('throws by default', function () {
+  it('returns undefined by default', function () {
     var n = new Node('a');
     var i = new Iterator(n);
 
-    assert.throws(function () {
-      i.next();
-    }, Error);
+    assert.strictEqual(i.next(), undefined);
   });
 
-  it('returns the iterated node value', function () {
+  it('returns first node', function () {
     var n = new Node('a');
     n.set('b', 1);
     var i = new Iterator(n);
 
     assert.strictEqual(i.next(), n._map.b);
+  });
+
+  it('returns undefined after calling next', function () {
+    var n = new Node('a');
+    n.set('b', 1);
+    n.set('c', 2);
+    var i = new Iterator(n);
+
+    assert.strictEqual(i.next(), n._map.b);
+    assert.strictEqual(i.next(), n._map.c);
+    assert.strictEqual(i.next(), undefined);
   });
 
   it('ignored nodes without a value', function () {
@@ -100,17 +70,6 @@ describe('iterator.next', function () {
     assert.deepEqual(toArray(n), [1, 2, 3]);
   });
 
-  it('does not return the previous value on second next call', function () {
-    var n = new Node('a');
-    n.set('c.d', 1);
-    n.set('c.e', 2);
-
-    var i = new Iterator(n);
-
-    assert.equal(i.next().value, 1);
-    assert.equal(i.next().value, 2);
-  });
-
   it('invokes the filter function with each node', function () {
     var a = [];
     var n = new Node('a');
@@ -121,9 +80,8 @@ describe('iterator.next', function () {
     n.set('b', 1);
     n.set('c.d', 2);
 
-    while (i.hasNext()) {
-      i.next();
-    }
+    n = i.next();
+    while (n) { n = i.next(); }
 
     assert.deepEqual(a, ['b', 'd']);
   });
@@ -135,7 +93,7 @@ describe('iterator.next', function () {
     });
     n.set('b', 1);
 
-    assert.strictEqual(i.hasNext(), false);
+    assert.strictEqual(i.next(), undefined);
   });
 
   it('does not pass children to filter if it returned false', function () {
@@ -148,9 +106,8 @@ describe('iterator.next', function () {
     n.set('b', 1);
     n.set('b.c', 2);
 
-    while (i.hasNext()) {
-      i.next();
-    }
+    n = i.next();
+    while (n) { n = i.next(); }
 
     assert.deepEqual(a, ['b']);
   });
@@ -165,7 +122,7 @@ describe('iterator.next', function () {
       n.set('b.c', 2);
 
       assert.deepEqual(i.next().value, 2);
-      assert.strictEqual(i.hasNext(), false);
+      assert.strictEqual(i.next(), undefined);
     });
 
 });

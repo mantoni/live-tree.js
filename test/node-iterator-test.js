@@ -23,7 +23,6 @@ describe('node.iterator', function () {
     var i = n.iterator();
 
     assert(i instanceof Iterator);
-    assert(i.hasNext());
     assert.equal(i.next().value, 42);
   });
 
@@ -36,7 +35,7 @@ describe('node.iterator', function () {
     });
 
     assert(i instanceof Iterator);
-    assert.strictEqual(i.hasNext(), false);
+    assert.strictEqual(i.next(), undefined);
   });
 
 });
