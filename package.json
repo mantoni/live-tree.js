@@ -20,8 +20,8 @@
     "live-list"      : "0.2.0"
   },
   "devDependencies"  : {
-    "autolint"       : ">=1.1 <2",
     "mocha"          : ">=1.14 <2",
+    "jslint"         : "~0.2.5",
     "consolify"      : "~0.6.0",
     "phantomic"      : "~0.2.1",
     "browser-reload" : ">=1.0 <2"
