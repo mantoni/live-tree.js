@@ -1,5 +1,2 @@
-.*
-!/.gitignore
-!/.travis.yml
 /node_modules
 /test/all.html
