@@ -28,9 +28,9 @@ n.set('a', 2);
 n.set('a.b', 3);
 n.set('a.c', 7);
 
-var i = n.iterator();
-while (n.hasNext()) {
-  console.log(n.next());
+var c, i = n.iterator();
+while ((c = i.next()) !== undefined) {
+  console.log(c.value);
 }
 ```
 
@@ -57,17 +57,12 @@ while (n.hasNext()) {
 - `toObject()`: Returns a plain object representation of the node and it's
   children
 - `iterator()`: Returns a new `Iterator`
-- `iterator(filter)`: Returns a new `Iterator` with the given filter function.
-  The filter is called with each child node. If the filter returns `true`, the
-  child node will be returned by `next()`.
 
 ## Iterator API
 
 - `Iterator(node)`: Returns a new Iterator using the given root node
-- `Iterator(node, filter)`: Returns a new Iterator using the given root node
-  and filter function
-- `hasNext()`: Returns `true` if there are more items in the tree to iterate
-- `next()`: Returns the next node in the tree
+- `next()`: Returns the next node in the tree. If there are no items left,
+  `undefined` is returned.
 
 ## License
 
