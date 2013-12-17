@@ -60,9 +60,13 @@ while ((c = i.next()) !== undefined) {
 
 ## Iterator API
 
+The iterator is derived from [min-iterator][].
+
 - `Iterator(node)`: Returns a new Iterator using the given root node
 - `next()`: Returns the next node in the tree. If there are no items left,
   `undefined` is returned.
+
+[min-iterator]: https://github.com/mantoni/min-iterator.js
 
 ## License
 

@@ -8,7 +8,9 @@
 /*globals describe, it, before, after, beforeEach, afterEach*/
 'use strict';
 
-var assert   = require('assert');
+var assert      = require('assert');
+var inherits    = require('inherits');
+var MinIterator = require('min-iterator');
 
 var Node     = require('../lib/node').Node;
 var Iterator = require('../lib/iterator').Iterator;
@@ -25,6 +27,13 @@ function toArray(n) {
 
 
 describe('iterator.next', function () {
+
+  it('inherits from MinIterator', function () {
+    var n = new Node('a');
+    var i = new Iterator(n);
+
+    assert(i instanceof MinIterator);
+  });
 
   it('returns undefined by default', function () {
     var n = new Node('a');
