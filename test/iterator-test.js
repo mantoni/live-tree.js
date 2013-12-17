@@ -70,4 +70,14 @@ describe('iterator.next', function () {
     assert.deepEqual(toArray(n), [1, 2, 3]);
   });
 
+  it('iterated over child that is inserted while iterating', function () {
+    var n = new Node('a');
+    n.set('b', 1);
+    var i = new Iterator(n);
+
+    i.next().set('c', 2);
+
+    assert.equal(2, i.next().value);
+  });
+
 });
