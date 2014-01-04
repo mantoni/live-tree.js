@@ -1,5 +1,9 @@
 # Changes
 
+## v0.3.0
+
+- Added `removeAll`
+
 ## v0.2.0
 
 - Iterator now inherits from [min-iterator][] and therefore supports

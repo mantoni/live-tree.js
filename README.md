@@ -49,6 +49,7 @@ while ((c = i.next()) !== undefined) {
 - `remove(name)`: Removes the named node. If it has children, the value is
   deleted. Parent nodes in the path with no value and no remaining children
   will be removed as well.
+- `removeAll()`: Removes all child nodes
 - `node(name)`: Return the named node or undefined if the node does not exist
 - `_add(node)`: Called by `set` to add a node to the children. The default
   implementation does `this.children.push(node);`.
@@ -57,6 +58,8 @@ while ((c = i.next()) !== undefined) {
 - `toObject()`: Returns a plain object representation of the node and it's
   children
 - `iterator()`: Returns a new `Iterator`
+
+[live-list]: https://github.com/mantoni/live-list.js "Fast linked list with live iterator"
 
 ## Iterator API
 
@@ -72,4 +75,3 @@ The iterator is derived from [min-iterator][].
 
 MIT
 
-[live-list]: https://github.com/mantoni/live-list.js "Fast linked list with live iterator"
