@@ -1,6 +1,6 @@
 {
   "name"             : "live-tree",
-  "version"          : "0.2.0",
+  "version"          : "0.3.0",
   "description"      : "Fast tree with live iterator",
   "keywords"         : ["tree", "iterator"],
   "author"           : "Maximilian Antoni (http://maxantoni.de)",
