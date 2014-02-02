@@ -20,7 +20,7 @@
     "url"            : "https://github.com/mantoni/live-tree.js.git"
   },
   "dependencies"     : {
-    "live-list"      : "~0.3.1",
+    "live-list"      : "~0.3.0",
     "min-iterator"   : "~0.1.0",
     "inherits"       : "~2.0.1"
   },
@@ -29,7 +29,7 @@
     "jslint"         : "~0.2.6",
     "browserify"     : ">=3.19 <4",
     "coverify"       : "~1.0.4",
-    "mochify"        : "~0.3.0"
+    "mochify"        : "~0.3.1"
   },
   "files"            : ["lib", "README.md", "CHANGES.md", "LICENSE"],
   "license"          : "MIT"
