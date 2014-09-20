@@ -1,11 +1,11 @@
-# live-tree.js [![Build Status](https://secure.travis-ci.org/mantoni/live-tree.js.png?branch=master)](http://travis-ci.org/mantoni/live-tree.js)
+# live-tree.js
+
+[![Build Status]](https://travis-ci.org/mantoni/live-tree.js)
+[![SemVer]](http://semver.org)
+[![License]](https://github.com/mantoni/live-tree.js/blob/master/LICENSE)
 
 Fast tree with live iterator. The tree can be modified
 while iterating over the nodes.
-
-Repository: <https://github.com/mantoni/live-tree.js>
-
----
 
 ## Install with npm
 
@@ -75,3 +75,6 @@ The iterator is derived from [min-iterator][].
 
 MIT
 
+[Build Status]: http://img.shields.io/travis/mantoni/live-tree.js.svg
+[SemVer]: http://img.shields.io/:semver-%E2%9C%93-brightgreen.svg
+[License]: http://img.shields.io/npm/l/live-tree.svg
